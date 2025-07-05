@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -51,17 +50,17 @@ namespace Kyoushitsu.Migrations
 
 					RETURN (v_unix_t_hex || v_rand_a_hex || v_rand_b_hex)::uuid;
 				END $$ LANGUAGE plpgsql;
-            ");
+				");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql(@"
-                DROP FUNCTION IF EXISTS uuid7(timestamp with time zone);
-                DROP FUNCTION IF EXISTS uuid7();
-                DROP EXTENSION IF EXISTS pgcrypto;
-            ");
+	        migrationBuilder.Sql(@"
+				DROP FUNCTION IF EXISTS uuid7(timestamp with time zone);
+				DROP FUNCTION IF EXISTS uuid7();
+				DROP EXTENSION IF EXISTS pgcrypto;
+			");
         }
     }
 }

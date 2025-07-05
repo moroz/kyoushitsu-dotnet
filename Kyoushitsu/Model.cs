@@ -7,8 +7,8 @@ namespace Kyoushitsu;
 public class BloggingContext(DbContextOptions<BloggingContext> options) : DbContext(options)
 {
     
-    public DbSet<Blog> Blogs { get; set; }
-    public DbSet<Post> Posts { get; set; }
+    // public DbSet<Blog> Blogs { get; set; }
+    // public DbSet<Post> Posts { get; set; }
 }
 
 public class Blog
