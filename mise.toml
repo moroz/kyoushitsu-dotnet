@@ -1,0 +1,4 @@
+[tools]
+node = "latest"
+"npm:pnpm" = "latest"
+"npm:prettier" = "latest"

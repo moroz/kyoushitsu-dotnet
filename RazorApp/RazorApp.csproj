@@ -8,9 +8,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
     </ItemGroup>
 
+    <ItemGroup>
+        <UpToDateCheckBuilt Include="wwwroot/css/bundle.css"/>
+        <UpToDateCheckBuilt Include="tailwind.config.js"/>
+    </ItemGroup>
+
+    <!-- For regular builds -->
+    <Target Name="TailwindBuild" BeforeTargets="Build" Condition="'$(DotNetWatchBuild)'!='true'">
+        <Exec Command="pnpm run build"/>
+    </Target>
+
+    <Target Name="TailwindWatch" BeforeTargets="Build" Condition="'$(DotNetWatchBuild)'=='true'">
+        <Exec Command="pnpm run watch" ContinueOnError="true"/>
+    </Target>
 </Project>
