@@ -1,23 +1,21 @@
-using System;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-
 using Kyoushitsu;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-builder.Services.AddDbContext<BloggingContext>((options) => options.UseNpgsql(builder.Configuration.GetConnectionString("BloggingContext")));
+builder.Services.AddDbContext<BloggingContext>(options =>
+    options
+        .UseNpgsql(builder.Configuration.GetConnectionString("BloggingContext"))
+        .UseSnakeCaseNamingConvention()
+);
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+if (app.Environment.IsDevelopment()) app.MapOpenApi();
 
 var summaries = new[]
 {
@@ -40,7 +38,7 @@ app.MapGet("/weatherforecast", () =>
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
