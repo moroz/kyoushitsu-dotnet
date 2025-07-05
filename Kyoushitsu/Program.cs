@@ -1,4 +1,6 @@
 using Kyoushitsu;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,29 +14,36 @@ builder.Services.AddDbContext<BloggingContext>(options =>
         .UseSnakeCaseNamingConvention()
 );
 
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) app.MapOpenApi();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/posts",
+    async (BloggingContext db) =>
     {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast");
+        var posts = await db.Posts.OrderByDescending(p => p.Id).ToListAsync();
+        return new
+        {
+            data = posts
+        };
+    });
+
+app.MapGet("/posts/{slug}", async (BloggingContext db, string slug) =>
+{
+    var post = await db.Posts.FirstOrDefaultAsync(p => p.Slug == slug);
+    if (post == null)
+    {
+        return Results.NotFound();
+    }
+
+    return Results.Ok(new
+    {
+        data = post
+    });
+});
 
 app.Run();
 
