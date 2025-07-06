@@ -14,16 +14,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <UpToDateCheckBuilt Include="wwwroot/css/bundle.css"/>
-        <UpToDateCheckBuilt Include="tailwind.config.js"/>
+        <UpToDateCheckBuilt Include="wwwroot/css/bundle.css" />
+        <UpToDateCheckBuilt Include="tailwind.config.js" />
     </ItemGroup>
 
-    <!-- For regular builds -->
-    <Target Name="TailwindBuild" BeforeTargets="Build" Condition="'$(DotNetWatchBuild)'!='true'">
-        <Exec Command="pnpm run build"/>
-    </Target>
-
-    <Target Name="TailwindWatch" BeforeTargets="Build" Condition="'$(DotNetWatchBuild)'=='true'">
-        <Exec Command="pnpm run watch" ContinueOnError="true"/>
-    </Target>
+    <ItemGroup>
+      <PackageReference Include="Vite.AspNetCore" Version="2.4.1" />
+    </ItemGroup>
 </Project>

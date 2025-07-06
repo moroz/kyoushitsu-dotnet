@@ -1,4 +1,5 @@
 [tools]
+dotnet = "latest"
 node = "latest"
 "npm:pnpm" = "latest"
 "npm:prettier" = "latest"

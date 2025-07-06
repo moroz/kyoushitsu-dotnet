@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+.layout {
+    @apply flex flex-col min-h-screen;
+    
+    > main {
+        @apply flex-1;
+    }
+}

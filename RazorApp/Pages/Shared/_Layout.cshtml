@@ -1,18 +1,40 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RazorApp</title>
     <script type="importmap"></script>
-    <link rel="stylesheet" href="~/css/bundle.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/RazorApp.styles.css" asp-append-version="true"/>
-</head>
-<body>
-<main role="main">
-    @RenderBody()
-</main>
-
-@await RenderSectionAsync("Scripts", required: false)
-</body>
+    <!-- Entry point for development -->
+    <environment include="Development">
+      <!-- It's mandatory to use the full url for the Vite client script. -->
+      <script type="module" src="http://localhost:5173/@@vite/client"></script>
+      <script type="module" src="http://localhost:5173/src/main.ts"></script>
+    </environment>
+    <environment include="Production">
+      <script
+        type="module"
+        vite-src="~/main.ts"
+        asp-append-version="true"
+      ></script>
+    </environment>
+  </head>
+  <body class="layout">
+    <header class="h-20 bg-blue-600 text-white">
+      <div class="container flex items-center h-20 mx-auto justify-between">
+        <h1 class="font-bold text-2xl">Kyoushitsu</h1>
+        <nav>
+          <ul class="flex gap-8">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main role="main">@RenderBody()</main>
+    <footer class="h-30 bg-gray-100 text-center grid place-items-center">
+      <p>&copy; 2025 by Karol Moroz.</p>
+    </footer>
+  </body>
 </html>
