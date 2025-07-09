@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kyoushitsu", "Kyoushitsu\Ky
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorApp", "RazorApp\RazorApp.csproj", "{638D59E0-6507-4DF0-AC1D-99008E2AC947}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstEfCoreApp", "MyFirstEfCoreApp\MyFirstEfCoreApp.csproj", "{63DA1DAC-C9B1-4B5A-9A1D-FF87A27647BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{638D59E0-6507-4DF0-AC1D-99008E2AC947}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{638D59E0-6507-4DF0-AC1D-99008E2AC947}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{638D59E0-6507-4DF0-AC1D-99008E2AC947}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63DA1DAC-C9B1-4B5A-9A1D-FF87A27647BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63DA1DAC-C9B1-4B5A-9A1D-FF87A27647BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63DA1DAC-C9B1-4B5A-9A1D-FF87A27647BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63DA1DAC-C9B1-4B5A-9A1D-FF87A27647BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
